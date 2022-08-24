@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { BASE_URL, TIME_OUT } from "../myajax/request/config";
 // axios.get("http://123.207.32.32:8000/home/multidata").then((res) => {
 //   console.log(res.data.data);
 // });
@@ -24,7 +24,10 @@ axios.interceptors.response.use(
     return err;
   }
 );
-axios.defaults.baseURL = "http://httpbin.org";
+axios.defaults.baseURL = BASE_URL;
+console.log(BASE_URL);
+console.log(TIME_OUT);
+
 axios
   .get("/get", {
     params: {
