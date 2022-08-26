@@ -12,4 +12,5 @@ export interface LBRequestInterceptors {
 // 自定义一个config类型, 继承原axios的config类型, 在此基本上, 新增一个属性, 类型是上面自定义的类型
 export interface LBRequestConfig extends AxiosRequestConfig {
   interceptors?: LBRequestInterceptors;
+  showLoading?: boolean;
 }
