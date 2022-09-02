@@ -1,5 +1,6 @@
 import LBRequest from "./request";
 import { BASE_URL, TIME_OUT } from "./request/config";
+import localCache from "@/utils/localCache";
 
 const lbRequest = new LBRequest({
   baseURL: BASE_URL,
@@ -7,10 +8,15 @@ const lbRequest = new LBRequest({
   interceptors: {
     requestInterceptor: (config) => {
       // console.log("对象级拦截, 请求成功的拦截");
-      const token = "xxxxx"; // 模拟从pinia或local.store里获取到的token
+      // 登陆成功, 本地缓存里有个token
+      const token = localCache.getCache("token");
       // 拦截->每次请求都发送token
       if (token) {
-        // config.headers.Authorization = `Bearer ${token}`;
+        //因为headers可能是undefined, 所以用if把范围缩小, 不然报警告
+        if (config && config.headers) {
+          // "Bearer可加, 可不加, axios会自动过滤"
+          config.headers.Authorization = `Bearer ${token}`;
+        }
       }
       return config;
     },

@@ -4,12 +4,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-  import { useRouter } from "vue-router";
-  import { useCounterStore } from "./stores";
-  const counter = useCounterStore();
-  const router = useRouter();
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="less">
   .app {
