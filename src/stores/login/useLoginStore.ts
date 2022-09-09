@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import lbRequest from "@/myajax";
 import type { IPostResultOfLogin, RootObject } from "./types";
 import localCache from "@/utils/localCache";
-import router from "@/router";
+import { router } from "@/router";
 
 export const useLoginStore = defineStore("login", {
   state() {

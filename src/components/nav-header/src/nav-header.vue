@@ -7,7 +7,9 @@
       ></component>
     </el-icon>
     <div class="header-content">
-      <div>面包屑</div>
+      <div>
+        <bread-crumb></bread-crumb>
+      </div>
       <div>
         <drop-down></drop-down>
       </div>
@@ -18,6 +20,7 @@
 <script setup lang="ts">
   import { usePublicStore } from "@/stores";
   import DropDown from "./DropDown.vue";
+  import BreadCrumb from "./BreadCrumb.vue";
   const publicStore = usePublicStore();
 </script>
 

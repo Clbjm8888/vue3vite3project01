@@ -1,4 +1,4 @@
-[
+const userMenu = [
   {
     id: 38,
     name: "系统总览",
@@ -352,3 +352,20 @@
     ],
   },
 ];
+const url = "/main/system/department";
+
+function queryID(url, userMenu) {
+  for (const menu of userMenu) {
+    if (menu.type === 1) {
+      const findMenu = queryID(url, menu.children ?? []);
+      if (findMenu) {
+        return findMenu;
+      }
+    } else if (menu.type === 2 && menu.url === url) {
+      return menu;
+    }
+  }
+}
+
+const a = queryID(url, userMenu);
+console.log(a.id);

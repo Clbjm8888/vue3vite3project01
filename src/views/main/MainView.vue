@@ -16,7 +16,9 @@
 
           <!-- 内容区 -->
           <el-main class="page-content">
-            <div class="router-content"><router-view></router-view></div>
+            <div class="router-content">
+              <router-view></router-view>
+            </div>
           </el-main>
         </el-container>
       </el-container>
@@ -26,7 +28,6 @@
 </template>
 
 <script setup lang="ts">
-  import router from "@/router";
   import { NavMenu } from "@/components/nav-menu";
   import { NavHeader } from "@/components/nav-header";
   import { usePublicStore } from "@/stores";

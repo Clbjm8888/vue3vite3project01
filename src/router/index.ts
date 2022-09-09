@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import LoginView from "@/views/login/LoginView.vue";
 import localCache from "@/utils/localCache";
+import { dynamicRoutes } from "./dynamicRouter";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,9 @@ router.beforeEach((to) => {
       return "/login";
     }
   }
+  if (to.path === "/main") {
+    return "/main/analysis/overview";
+  }
 });
 
-export default router;
+export { router, dynamicRoutes };

@@ -7,7 +7,7 @@
     </div>
     <!-- 菜单区 -->
     <el-menu
-      default-active="2"
+      :default-active="currentID"
       class="el-menu-vertical-demo"
       background-color="#0c2135"
       :collapse="publicStore.isFold"
@@ -42,14 +42,32 @@
 </template>
 
 <script setup lang="ts">
-  import router from "@/router";
+  import { ref } from "vue";
+  import { router } from "@/router";
+
   import { useLoginStore, usePublicStore } from "@/stores";
+  import { queryID } from "@/utils/queryID";
+  import { breadCrumb } from "@/utils/breadCrumb";
 
   const loginStore = useLoginStore();
   const publicStore = usePublicStore();
   const userMenu = loginStore.userMenu as any;
+
+  // 刷新后, 当前活动项还在
+  const currentID = ref("39");
+  const a = queryID(router.currentRoute.value.fullPath, loginStore.userMenu);
+  currentID.value = a.id.toString();
+
+  // 刷新后保持面包屑正确
+  const arr = breadCrumb(router.currentRoute.value.fullPath);
+  publicStore.changeBreadCrumb(arr);
+
   const goRoute = (url: string) => {
     router.push(url);
+
+    // 立马更新面包屑
+    const arr = breadCrumb(url);
+    publicStore.changeBreadCrumb(arr);
   };
 </script>
 

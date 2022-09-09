@@ -23,7 +23,6 @@
   import { useLoginStore } from "@/stores";
   const loginStore = useLoginStore();
   const name = loginStore.userInfo.name;
-  console.log(name);
 </script>
 
 <style scoped>
