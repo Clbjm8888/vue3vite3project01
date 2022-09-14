@@ -35,6 +35,10 @@
     <div class="divideLine"></div>
 
     <!-- 表格 开始-->
+    <div class="tableHead">
+      <strong>用户列表</strong>
+      <el-button type="primary">新增用户</el-button>
+    </div>
     <el-table
       :data="systemStore.userList"
       border
@@ -95,7 +99,7 @@
       <el-pagination
         v-model:currentPage="currentPage"
         v-model:page-size="pageSize"
-        :page-sizes="[1, 2, 3, 5]"
+        :page-sizes="[10, 20, 30, 50]"
         :background="true"
         layout="total, sizes, prev, pager, next, jumper"
         :total="systemStore.userTotal"
@@ -113,7 +117,7 @@
   const systemStore = useSystemStore();
 
   // 分页器的参数
-  const pageSize = ref(1); //一页显示多少条
+  const pageSize = ref(10); //一页显示多少条
   const currentPage = ref(1); // 当前页
 
   //表单对象
@@ -143,7 +147,7 @@
       cellphone: "",
       enable: 1,
     };
-    pageSize.value = 1;
+    pageSize.value = 10;
     currentPage.value = 1;
 
     systemStore.changeUserList({
@@ -200,5 +204,12 @@
   .dividePage {
     display: flex;
     justify-content: flex-end;
+  }
+
+  .tableHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
   }
 </style>
